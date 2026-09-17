@@ -1,0 +1,14 @@
+node_modules/
+.next/
+.next*/
+build-verification.log
+out/
+.env
+.env.local
+.env.*.local
+contracts/cache/
+contracts/out/
+contracts/broadcast/
+contracts/lib/
+*.key
+*.pem
