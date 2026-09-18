@@ -1,0 +1,2 @@
+import { CreateBounty } from "@/components/create-bounty";
+export default function CreatePage(){return <><div className="max-w-2xl"><p className="eyebrow">New outcome</p><h1 className="mt-3 text-4xl font-semibold tracking-tight">Create a bounty</h1><p className="mt-3 text-base leading-7 text-stone-600">Make the outcome clear. Your USDC stays escrowed until the work is accepted, refunded, or expires.</p></div><div className="mt-8"><CreateBounty/></div></>}

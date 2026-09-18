@@ -1,7 +1,12 @@
 node_modules/
+node_modules*/
 .next/
 .next*/
 build-verification.log
+build-ui.log
+build-release.log
+lint-release.log
+.next-ui/
 out/
 .env
 .env.local
@@ -12,3 +17,4 @@ contracts/broadcast/
 contracts/lib/
 *.key
 *.pem
+*.tsbuildinfo
