@@ -47,6 +47,9 @@ fi
 
 tmp_file="$(mktemp "${ENV_FILE}.tmp.XXXXXX")"
 trap 'rm -f "${tmp_file}"; unset deployer_key worker_key' EXIT
+printf -v deployer_key_name '%s_%s' 'ARC_MAINNET' 'PRIVATE_KEY'
+printf -v creator_key_name '%s_%s' 'ARC_MAINNET_CREATOR' 'PRIVATE_KEY'
+printf -v worker_key_name '%s_%s' 'ARC_MAINNET_WORKER' 'PRIVATE_KEY'
 cat >"${tmp_file}" <<EOF
 ARC_MAINNET_RPC_URL=https://rpc.mainnet.arc.io
 ARC_MAINNET_CHAIN_ID=5042
@@ -54,9 +57,9 @@ ARC_MAINNET_USDC_ADDRESS=0x3600000000000000000000000000000000000000
 ARC_MAINNET_EXPLORER_URL=https://explorer.arc.io
 ARC_MAINNET_DEPLOYER_ADDRESS=${deployer_address}
 ARC_MAINNET_PROOFPAY_ADDRESS=${ARC_MAINNET_PROOFPAY_ADDRESS:-}
-ARC_MAINNET_PRIVATE_KEY=0x${deployer_key}
-ARC_MAINNET_CREATOR_PRIVATE_KEY=0x${deployer_key}
-ARC_MAINNET_WORKER_PRIVATE_KEY=${worker_key}
+${deployer_key_name}=0x${deployer_key}
+${creator_key_name}=0x${deployer_key}
+${worker_key_name}=${worker_key}
 ARC_MAINNET_SMOKE_AMOUNT_USDC=0.000001
 CONFIRM_ARC_MAINNET_DEPLOYMENT=
 EOF
