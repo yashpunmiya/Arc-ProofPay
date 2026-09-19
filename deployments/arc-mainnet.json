@@ -1,0 +1,9 @@
+{
+  "network": "arc-mainnet",
+  "chainId": 5042,
+  "contractAddress": "0x1d81c9593536d814ae0976903b1df49ce8e8e401",
+  "deploymentTxHash": "0x0ca7e926cb2b57051e2aaf802534f054420130128a112ec29dbfcaa58dc00e8d",
+  "usdcAddress": "0x3600000000000000000000000000000000000000",
+  "explorerUrl": "https://explorer.arc.io",
+  "deployedAt": "2026-09-19T17:47:25.762Z"
+}
