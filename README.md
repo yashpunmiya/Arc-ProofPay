@@ -38,9 +38,11 @@ Install Foundry and contract dependencies first: `cd contracts && forge install 
 
 Copy `.env.example` to `.env.local`, configure a current Testnet RPC and deployed address, then run `./scripts/testnet-preflight.sh`. A funded creator wallet is required for deployment and lifecycle smoke testing. See [deployment documentation](docs/DEPLOYMENT.md).
 
-## Mainnet readiness
+## Arc Mainnet
 
-Arc Mainnet is live (chain ID 5042, RPC `https://rpc.mainnet.arc.io`, explorer `https://explorer.arc.io`). ProofPay is not deployed there. Mainnet scripts require explicit configuration and confirmation, refuse Testnet endpoints, and never broadcast automatically.
+ProofPay V1 is deployed and smoke-tested on Arc Mainnet (chain ID `5042`, RPC `https://rpc.mainnet.arc.io`, explorer `https://explorer.arc.io`). The production contract is `0x1d81c9593536d814ae0976903b1df49ce8e8e401` and uses six-decimal USDC at `0x3600000000000000000000000000000000000000`.
+
+Deployment and one-raw-unit lifecycle evidence are recorded in [`deployments/arc-mainnet.json`](deployments/arc-mainnet.json). Mainnet scripts remain explicitly gated and never run automatically.
 
 ```bash
 ./scripts/mainnet-preflight.sh

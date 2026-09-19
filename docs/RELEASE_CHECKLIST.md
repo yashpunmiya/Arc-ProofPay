@@ -31,13 +31,13 @@
 
 ## Mainnet gate
 
-- [ ] Official Arc Mainnet chain ID, RPC, explorer, and USDC address are published and entered in the Mainnet-only environment.
-- [ ] `./scripts/mainnet-preflight.sh` passes without broadcasting.
-- [ ] `ARC_MAINNET_PROOFPAY_ADDRESS` is empty before first deployment.
-- [ ] Deployment confirmation is set manually to `DEPLOY_PROOFPAY_WITH_REAL_USDC`.
-- [ ] `./scripts/mainnet-deploy.sh` output and `deployments/arc-mainnet.json` are archived.
-- [ ] Mainnet frontend configuration is reviewed separately from Testnet.
-- [ ] `./scripts/mainnet-smoke.sh` is run manually with the smallest practical amount.
-- [ ] Smoke task status, payout, and explorer links are verified.
+- [x] Official Arc Mainnet chain ID, RPC, explorer, and USDC address are published and entered in the Mainnet-only environment.
+- [x] `./scripts/mainnet-preflight.sh` passes without broadcasting.
+- [x] `ARC_MAINNET_PROOFPAY_ADDRESS` was empty before first deployment.
+- [x] Deployment confirmation was set to `DEPLOY_PROOFPAY_WITH_REAL_USDC`.
+- [x] `./scripts/mainnet-deploy.sh` output and `deployments/arc-mainnet.json` are archived.
+- [x] Mainnet frontend configuration is reviewed separately from Testnet.
+- [x] A one-raw-unit Mainnet lifecycle was run with explicit gas for `createTask`.
+- [x] Smoke task status, payout, and explorer links are verified.
 
-Mainnet deployment remains **NOT READY** until live RPC checks pass, the repository is frozen, and the Testnet escrow lifecycle is explained and successful with the current contract build.
+Mainnet V1 is deployed and verified. Preserve the recorded deployment and use the explicit Mainnet scripts for future operational checks.

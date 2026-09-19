@@ -52,12 +52,14 @@ CONFIRM_ARC_MAINNET_DEPLOYMENT=DEPLOY_PROOFPAY_WITH_REAL_USDC \
 
 The script refuses Testnet endpoints, wrong chain IDs, non-six-decimal USDC, existing deployment metadata, and mismatched deployer addresses. It writes public metadata to `deployments/arc-mainnet.json` and never prints a private key.
 
+The verified Mainnet V1 contract is `0x1d81c9593536d814ae0976903b1df49CE8e8e401`; deployment and smoke transaction hashes are recorded in `deployments/arc-mainnet.json`.
+
 After deployment, set `ARC_MAINNET_PROOFPAY_ADDRESS` and fund dedicated creator/worker wallets with the minimum real USDC required for the tiny smoke. Do not run the smoke automatically:
 
 ```bash
 ./scripts/mainnet-smoke.sh
 ```
 
-The smoke amount defaults to `0.001` USDC and can be changed with `ARC_MAINNET_SMOKE_AMOUNT_USDC` (maximum six decimal places). It verifies create, claim, proof submission, approval, completed status, payout, and zero remaining escrow.
+The smoke amount defaults to `0.000001` USDC (one raw six-decimal unit) and can be changed with `ARC_MAINNET_SMOKE_AMOUNT_USDC` (maximum six decimal places). It verifies create, claim, proof submission, approval, completed status, payout, and zero remaining escrow. The verified lifecycle used explicit gas for `createTask` because Arc USDC blocklist simulation can return a false-negative precompile error; the real receipt succeeded.
 
 Official references: [Arc documentation index](https://docs.arc.io/llms.txt), [network deployment model](https://docs.arc.io/arc/concepts/deployment-model), and [Arc USDC transfer reference](https://docs.arc.io/integrate/infrastructure/indexing-events).

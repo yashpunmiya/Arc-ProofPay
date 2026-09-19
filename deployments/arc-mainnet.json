@@ -5,5 +5,19 @@
   "deploymentTxHash": "0x0ca7e926cb2b57051e2aaf802534f054420130128a112ec29dbfcaa58dc00e8d",
   "usdcAddress": "0x3600000000000000000000000000000000000000",
   "explorerUrl": "https://explorer.arc.io",
-  "deployedAt": "2026-09-19T17:47:25.762Z"
+  "deployedAt": "2026-09-19T17:47:25.762Z",
+  "sourceCommit": "9bdb5c9",
+  "smoke": {
+    "taskId": 1,
+    "amountRaw": 1,
+    "creator": "0xcb75CFFB5fe55774f600eD2B7D8f2BeA43de0c0c",
+    "worker": "0xa4E525CBf171b631EB09a25A6AF00b21D1523727",
+    "approvalTxHash": "0x4d59c8bd2b7981b51c1abadafd308178bfe23365b39281793a7fb77b3f88562a",
+    "createTxHash": "0xea9c18f5b9f7ef61878e44d6015bfa23b24742191347a490612025ecd2f67b48",
+    "claimTxHash": "0xd9effde9022c5e4aa0eba3c981f6bfea7930d8508b5f20dc6114b84e62a80395",
+    "submitTxHash": "0x7522822a301c63be51d09bbc7fc4a66567676eb0f34953bb2ecb9208e05471ba",
+    "payoutTxHash": "0x69a843dd249b23fec17d7022e05c6cb448844f4866a1bcdf92f715413ff959c9",
+    "status": "COMPLETED",
+    "proofURI": "https://github.com/JUICEWRLD998/arc-proofpay"
+  }
 }

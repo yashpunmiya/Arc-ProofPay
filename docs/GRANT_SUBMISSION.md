@@ -16,7 +16,7 @@ Small internet-native jobs are too small for conventional invoicing. ProofPay ma
 Arc's USDC-native fee model and EVM compatibility fit small programmable payments.
 
 ## What is working
-The frozen MVP has a tested Solidity escrow, local lifecycle, testnet deployment tooling, a reactive frontend, exact six-decimal USDC parsing/approvals, and gated Mainnet preparation scripts. See BUILD_STATUS and RELEASE_CHECKLIST for verified evidence and current release gates.
+The frozen MVP has a tested Solidity escrow, local lifecycle, testnet deployment tooling, a reactive frontend, exact six-decimal USDC parsing/approvals, and a verified Arc Mainnet deployment. See `deployments/arc-mainnet.json`, BUILD_STATUS, and RELEASE_CHECKLIST for evidence.
 
 ## Tech stack
 Next.js, wagmi, viem, Solidity, Foundry, OpenZeppelin.
@@ -35,4 +35,6 @@ Repository URL not configured.
 - [ ] Create, claim, submit, payout transactions
 - [ ] Live frontend and public repository
 
-Mainnet is intentionally not deployed. Arc Mainnet is live, but deployment remains explicitly gated until the release checklist and Testnet escrow investigation are complete.
+Mainnet ProofPay V1: `0x1d81c9593536d814ae0976903b1df49CE8e8e401`.
+
+The one-raw-unit Mainnet lifecycle completed successfully using explicit gas for `createTask`; explorer transaction links are recorded in `deployments/arc-mainnet.json`.
