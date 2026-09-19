@@ -44,10 +44,13 @@ ProofPay V1 is deployed and smoke-tested on Arc Mainnet (chain ID `5042`, RPC `h
 
 Deployment and one-raw-unit lifecycle evidence are recorded in [`deployments/arc-mainnet.json`](deployments/arc-mainnet.json). Mainnet scripts remain explicitly gated and never run automatically.
 
+The frontend uses six-decimal `parseUnits` amounts, exact (never unlimited) USDC approvals, and bounded explicit gas limits for every escrow write. This is intentional: Arc USDC simulation may report a false-negative `isBlocklisted`/`OpcodeNotFound` during estimation even when the bounded transaction succeeds. The read-only write-config check is:
+
 ```bash
 ./scripts/mainnet-preflight.sh
 CONFIRM_ARC_MAINNET_DEPLOYMENT=DEPLOY_PROOFPAY_WITH_REAL_USDC ./scripts/mainnet-deploy.sh
 ./scripts/mainnet-smoke.sh
+pnpm check:mainnet-writes
 ```
 
 See [deployment documentation](docs/DEPLOYMENT.md) and [release checklist](docs/RELEASE_CHECKLIST.md) before using real USDC.

@@ -54,6 +54,8 @@ The script refuses Testnet endpoints, wrong chain IDs, non-six-decimal USDC, exi
 
 The verified Mainnet V1 contract is `0x1d81c9593536d814ae0976903b1df49CE8e8e401`; deployment and smoke transaction hashes are recorded in `deployments/arc-mainnet.json`.
 
+The frontend uses `parseUnits(..., 6)` for bounty amounts, requests only the exact allowance required, and supplies centralized bounded gas limits for approvals and every ProofPay state-changing method. Run `pnpm check:mainnet-writes` to verify the same calldata/gas request shape and live Mainnet addresses without broadcasting.
+
 After deployment, set `ARC_MAINNET_PROOFPAY_ADDRESS` and fund dedicated creator/worker wallets with the minimum real USDC required for the tiny smoke. Do not run the smoke automatically:
 
 ```bash

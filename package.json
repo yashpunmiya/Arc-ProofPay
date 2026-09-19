@@ -9,6 +9,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "check:mainnet-writes": "node --experimental-strip-types scripts/check-mainnet-write-config.mjs",
     "test:web": "pnpm typecheck && pnpm test && pnpm build"
   },
   "dependencies": {
