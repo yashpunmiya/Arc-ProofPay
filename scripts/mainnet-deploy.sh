@@ -2,6 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+source "${ROOT_DIR}/scripts/load-mainnet-env.sh"
 source "${ROOT_DIR}/scripts/foundry-env.sh"
 : "${ARC_MAINNET_RPC_URL:?Set ARC_MAINNET_RPC_URL}"
 : "${ARC_MAINNET_CHAIN_ID:?Set ARC_MAINNET_CHAIN_ID}"

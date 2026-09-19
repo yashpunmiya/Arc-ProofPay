@@ -2,6 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+source "${ROOT_DIR}/scripts/load-mainnet-env.sh"
 source "${ROOT_DIR}/scripts/foundry-env.sh"
 : "${ARC_MAINNET_RPC_URL:?Set ARC_MAINNET_RPC_URL}"
 : "${ARC_MAINNET_CHAIN_ID:?Set ARC_MAINNET_CHAIN_ID}"
@@ -20,11 +21,11 @@ code="$(cast code "${ARC_MAINNET_USDC_ADDRESS}" --rpc-url "${ARC_MAINNET_RPC_URL
 decimals="$(cast call "${ARC_MAINNET_USDC_ADDRESS}" 'decimals()(uint8)' --rpc-url "${ARC_MAINNET_RPC_URL}")"
 [ "${decimals}" = "6" ] || { echo "Expected six-decimal USDC, got ${decimals}." >&2; exit 1; }
 
-amount_raw="$(AMOUNT_USDC="${ARC_MAINNET_SMOKE_AMOUNT_USDC:-0.001}" node -e '
+amount_raw="$(AMOUNT_USDC="${ARC_MAINNET_SMOKE_AMOUNT_USDC:-0.000001}" node -e '
 const value=process.env.AMOUNT_USDC; if(!/^\d+(\.\d{1,6})?$/.test(value)) process.exit(1); const [whole,fraction=""] = value.split("."); console.log(BigInt(whole)*1000000n+BigInt((fraction+"000000").slice(0,6)));
 ')"
 [ "${amount_raw}" -gt 0 ] || { echo "Smoke amount must be positive." >&2; exit 1; }
-echo "Running tiny real-USDC lifecycle (${ARC_MAINNET_SMOKE_AMOUNT_USDC:-0.001} USDC = ${amount_raw} raw units)."
+echo "Running tiny real-USDC lifecycle (${ARC_MAINNET_SMOKE_AMOUNT_USDC:-0.000001} USDC = ${amount_raw} raw units)."
 
 log_file="$(mktemp)"
 trap 'rm -f "${log_file}"' EXIT

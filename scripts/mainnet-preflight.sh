@@ -2,6 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+source "${ROOT_DIR}/scripts/load-mainnet-env.sh"
 source "${ROOT_DIR}/scripts/foundry-env.sh"
 
 echo "--- git ---"

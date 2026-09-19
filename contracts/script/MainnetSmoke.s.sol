@@ -20,7 +20,9 @@ contract MainnetSmoke is Script {
 
         uint256 beforeBalance = usdc.balanceOf(worker);
         vm.startBroadcast(creatorKey);
-        usdc.approve(proofPayAddress, amount);
+        if (usdc.allowance(creator, proofPayAddress) < amount) {
+            usdc.approve(proofPayAddress, amount);
+        }
         uint256 taskId = proofPay.createTask(
             "Arc Mainnet smoke", "ProofPay live lifecycle", amount, uint64(block.timestamp + 1 hours)
         );

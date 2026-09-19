@@ -10,6 +10,8 @@ lint-release.log
 out/
 .env
 .env.local
+.env.mainnet.local
+.env.production.local
 .env.*.local
 contracts/cache/
 contracts/out/
