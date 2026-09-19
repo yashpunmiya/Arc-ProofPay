@@ -22,7 +22,7 @@ decimals="$(cast call "${ARC_MAINNET_USDC_ADDRESS}" 'decimals()(uint8)' --rpc-ur
 [ "${decimals}" = "6" ] || { echo "Expected six-decimal USDC, got ${decimals}." >&2; exit 1; }
 
 amount_raw="$(AMOUNT_USDC="${ARC_MAINNET_SMOKE_AMOUNT_USDC:-0.000001}" node -e '
-const value=process.env.AMOUNT_USDC; if(!/^\d+(\.\d{1,6})?$/.test(value)) process.exit(1); const [whole,fraction=""] = value.split("."); console.log(BigInt(whole)*1000000n+BigInt((fraction+"000000").slice(0,6)));
+const value=process.env.AMOUNT_USDC; if(!/^\d+(\.\d{1,6})?$/.test(value)) process.exit(1); const [whole,fraction=""] = value.split("."); console.log((BigInt(whole)*1000000n+BigInt((fraction+"000000").slice(0,6))).toString());
 ')"
 [ "${amount_raw}" -gt 0 ] || { echo "Smoke amount must be positive." >&2; exit 1; }
 echo "Running tiny real-USDC lifecycle (${ARC_MAINNET_SMOKE_AMOUNT_USDC:-0.000001} USDC = ${amount_raw} raw units)."
