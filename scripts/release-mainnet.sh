@@ -19,7 +19,13 @@ status="$(git -C "${ROOT_DIR}" status --short)"
 [ -z "${status}" ] || { echo "Refusing: repository is not clean:"; echo "${status}"; exit 1; }
 commit="$(git -C "${ROOT_DIR}" rev-parse HEAD)"
 [ "${commit}" = "${EXPECTED_RELEASE_COMMIT}" ] || { echo "Refusing: expected release ${EXPECTED_RELEASE_COMMIT}, found ${commit}." >&2; exit 1; }
-[ "$(git -C "${ROOT_DIR}" show -s --format=%s HEAD)" = "chore: harden ProofPay for release" ] || { echo "Refusing: HEAD is not the hardened ProofPay release commit." >&2; exit 1; }
+release_subject="$(git -C "${ROOT_DIR}" show -s --format=%s HEAD)"
+case "${release_subject}" in
+  "chore: harden ProofPay for release"|"chore: automate Arc mainnet release workflow") ;;
+  *) echo "Refusing: HEAD is not an approved ProofPay release commit." >&2; exit 1 ;;
+esac
+submodule_status="$(git -C "${ROOT_DIR}/contracts/lib/openzeppelin-contracts" status --short)"
+[ -z "${submodule_status}" ] || { echo "Refusing: OpenZeppelin submodule is dirty:" >&2; echo "${submodule_status}" >&2; exit 1; }
 
 deployer="$(cast wallet address --private-key "${ARC_MAINNET_PRIVATE_KEY}")"
 worker="$(cast wallet address --private-key "${ARC_MAINNET_WORKER_PRIVATE_KEY}")"
@@ -94,4 +100,4 @@ NEXT_PUBLIC_PROOFPAY_ADDRESS=${ARC_MAINNET_PROOFPAY_ADDRESS}
 EOF
 chmod 600 "${ROOT_DIR}/.env.production.local"
 (cd "${ROOT_DIR}" && pnpm lint && pnpm typecheck && pnpm test && pnpm build && ./scripts/check-secrets.sh)
-echo "Mainnet deployment and smoke verification completed. Review generated metadata/docs before committing." 
+echo "Mainnet deployment, smoke verification, and production checks completed."
