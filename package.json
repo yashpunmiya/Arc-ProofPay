@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "check:mainnet-writes": "node --experimental-strip-types scripts/check-mainnet-write-config.mjs",
+    "seed:mainnet-bounties": "node --experimental-strip-types scripts/seed-mainnet-bounties.mjs",
     "test:web": "pnpm typecheck && pnpm test && pnpm build"
   },
   "dependencies": {
